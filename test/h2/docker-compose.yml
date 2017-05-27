@@ -1,4 +1,4 @@
 camunda:
-  image: camunda/camunda-bpm-platform:wildfly-7.7.0-SNAPSHOT
+  image: camunda/camunda-bpm-platform:wildfly-7.8.0-SNAPSHOT
   ports:
     - "8080:8080"
