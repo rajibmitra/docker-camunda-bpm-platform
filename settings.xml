@@ -1,0 +1,35 @@
+<settings xmlns="http://maven.apache.org/SETTINGS/1.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd">
+
+    <!-- Camunda EE Username/Password (only required for EE image) -->
+    <servers>
+        <server>
+            <id>camunda-bpm-ee</id>
+            <username>USER</username>
+            <password>PASSWORD</password>
+        </server>
+    </servers>
+
+    <profiles>
+        <!-- Camunda CE repository -->
+        <profile>
+            <id>camunda-bpm</id>
+            <repositories>
+                <repository>
+                    <id>camunda-bpm</id>
+                    <url>https://app.camunda.com/nexus/content/repositories/camunda-bpm/</url>
+                </repository>
+            </repositories>
+        </profile>
+        <profile>
+            <!-- Camunda EE repository -->
+            <id>camunda-bpm-ee</id>
+            <repositories>
+                <repository>
+                    <id>camunda-bpm-ee</id>
+                    <url>https://app.camunda.com/nexus/content/repositories/camunda-bpm-ee/</url>
+                </repository>
+            </repositories>
+        </profile>
+    </profiles>
+
+</settings>
