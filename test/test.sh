@@ -10,7 +10,7 @@ poll_log 'JBoss AS 7.2.0.Final "Janus" started in' 'JBoss AS 7.2.0.Final "Janus"
 
 _log "Server started"
 
-grep_log 'Deployed "camunda-example-invoice-7.7.0-' || _exit 2 "Process application not deployed"
+grep_log 'Deployed "camunda-example-invoice-7.7.0' || _exit 2 "Process application not deployed"
 
 _log "Process application deployed"
 
