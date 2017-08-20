@@ -5,12 +5,11 @@ sudo: required
 services:
     - docker
 
-before_script:
-    - make pull-from pull build
+env:
+    - COMPOSE_HTTP_TIMEOUT=120
 
 script:
-    - make test
+    - .ci/test.sh
 
 after_success:
-    - docker login -e $DOCKER_HUB_EMAIL -u $DOCKER_HUB_USERNAME -p $DOCKER_HUB_PASSWORD
-    - make push
+    - .ci/deploy.sh
