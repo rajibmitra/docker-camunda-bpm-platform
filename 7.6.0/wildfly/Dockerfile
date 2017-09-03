@@ -2,7 +2,7 @@ FROM ubuntu:latest
 
 # install java and tools
 RUN apt-get -qq update && \
-    apt-get -qq -y install --no-install-recommends openjdk-8-jre xmlstarlet ca-certificates locales wget tzdata > /dev/null && \
+    apt-get -qq -y install --no-install-recommends openjdk-8-jre-headless xmlstarlet ca-certificates locales wget tzdata > /dev/null && \
     locale-gen en_US.UTF-8 && \
     apt-get -qq clean && \
     rm -rf /var/cache/* /var/lib/apt/lists/*
