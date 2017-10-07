@@ -11,7 +11,7 @@ WORKDIR /camunda
 
 ENV LANG=en_US.UTF-8 \
     DISTRO=tomcat \
-    SERVER=apache-tomcat-8.0.24 \
+    SERVER=apache-tomcat-8.0.47 \
     LIB_DIR=/camunda/lib/ \
     SERVER_CONFIG=/camunda/conf/server.xml \
     NEXUS=https://app.camunda.com/nexus/service/local/artifact/maven/redirect \
