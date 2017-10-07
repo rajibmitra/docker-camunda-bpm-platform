@@ -6,10 +6,13 @@ services:
     - docker
 
 env:
-    - COMPOSE_HTTP_TIMEOUT=120
+    matrix:
+        - DISTRO=tomcat VERSION=7.6.0
+        - DISTRO=tomcat VERSION=7.7.0
+        - DISTRO=tomcat VERSION=7.8.0-SNAPSHOT
+        - DISTRO=wildfly VERSION=7.6.0
+        - DISTRO=wildfly VERSION=7.7.0
+        - DISTRO=wildfly VERSION=7.8.0-SNAPSHOT
 
 script:
-    - .ci/test.sh
-
-after_success:
-    - .ci/deploy.sh
+    - docker build -t menski/camunda-single-file:${DISTRO}-${VERSION} --build-arg DISTRO=${DISTRO} --build-arg VERSION=${VERSION} .
