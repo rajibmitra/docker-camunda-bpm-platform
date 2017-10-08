@@ -7,7 +7,7 @@ ARG VERSION=7.7.0
 ARG NEXUS_USER=_
 ARG NEXUS_PASS=_
 ARG EE=false
-
+ARG SLIM=false
 
 ADD build/download-camunda.sh /bin/
 
