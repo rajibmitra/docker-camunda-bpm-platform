@@ -31,7 +31,7 @@ WORKDIR /camunda
 
 COPY --from=builder /camunda/ .
 
-RUN apk add --no-cache xmlstarlet
+RUN apk add --no-cache bash xmlstarlet ca-certificates
 
 ADD run/configure-and-run.sh /bin/
 
