@@ -16,7 +16,7 @@ if is_ee; then
     REPOSITORY="camunda-bpm-ee"
     # Camunda enterprise artifact has additional ee part
     ARTIFACT="camunda-bpm-ee-${DISTRO}"
-    if [ ! is_snapshot ]; then
+    if ! is_snapshot; then
         # Camunda enterprise version as a -ee prefix if its not a SNAPSHOT
         VERSION="${VERSION}-ee"
     fi
