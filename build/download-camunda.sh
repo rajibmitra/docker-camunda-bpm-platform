@@ -2,17 +2,31 @@
 
 set -o pipefail
 
-if [ "${EE}" = "true" ]; then
-    # Camunda enterprise version as a -ee prefix
-    VERSION="${VERSION}-ee"
+NEXUS=https://app.camunda.com/nexus/service/local/artifact/maven/redirect
+
+function is_ee {
+    test "${EE}" = "true"
+}
+
+function is_snapshot {
+    [[ "${VERSION}" == *SNAPSHOT ]]
+}
+
+if is_ee; then
+    REPOSITORY="camunda-bpm-ee"
     # Camunda enterprise artifact has additional ee part
     ARTIFACT="camunda-bpm-ee-${DISTRO}"
-    if [ "${REPOSITORY}" = "camunda-bpm" ]; then
-        # If the user did not specify another repository for the ee version change to camunda-bpm-ee repository assuming that the camunda nexus is used
-        REPOSITORY="${REPOSITORY}-ee"
+    if [ ! is_snapshot ]; then
+        # Camunda enterprise version as a -ee prefix if its not a SNAPSHOT
+        VERSION="${VERSION}-ee"
     fi
 else
+    REPOSITORY="camunda-bpm"
     ARTIFACT="camunda-bpm-${DISTRO}"
+fi
+
+if is_snapshot; then
+    REPOSITORY="${REPOSITORY}-snapshots"
 fi
 
 

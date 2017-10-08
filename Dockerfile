@@ -2,8 +2,6 @@ FROM alpine:latest as builder
 
 WORKDIR /camunda
 
-ARG NEXUS=https://app.camunda.com/nexus/service/local/artifact/maven/redirect
-ARG REPOSITORY=camunda-bpm
 ARG DISTRO=tomcat
 ARG VERSION=7.7.0
 ARG NEXUS_USER=_

@@ -8,15 +8,32 @@ services:
 env:
     matrix:
         - DISTRO=tomcat VERSION=7.6.0
+        - DISTRO=tomcat VERSION=7.6.7 EE=true
         - DISTRO=tomcat VERSION=7.7.0
+        - DISTRO=tomcat VERSION=7.7.4 EE=true
+        - DISTRO=tomcat VERSION=7.8.0-alpha4
+        - DISTRO=tomcat VERSION=7.8.0-alpha4 EE=true
         - DISTRO=tomcat VERSION=7.8.0-SNAPSHOT
+        - DISTRO=tomcat VERSION=7.8.0-SNAPSHOT EE=true
         - DISTRO=wildfly VERSION=7.6.0
+        - DISTRO=wildfly VERSION=7.6.7 EE=true
         - DISTRO=wildfly VERSION=7.7.0
+        - DISTRO=wildfly VERSION=7.7.4 EE=true
+        - DISTRO=wildfly VERSION=7.8.0-alpha4
+        - DISTRO=wildfly VERSION=7.8.0-alpha4 EE=true
         - DISTRO=wildfly VERSION=7.8.0-SNAPSHOT
+        - DISTRO=wildfly VERSION=7.8.0-SNAPSHOT EE=true
 
 before_install:
-  - sudo apt-get update
-  - sudo apt-get -y -o Dpkg::Options::="--force-confnew" install docker-ce
+    - sudo apt-get update
+    - sudo apt-get -y -o Dpkg::Options::="--force-confnew" install docker-ce
 
 script:
-    - docker build -t menski/camunda-single-file:${DISTRO}-${VERSION} --build-arg DISTRO=${DISTRO} --build-arg VERSION=${VERSION} .
+    - >
+        docker build -t menski/camunda-single-file:${DISTRO}-${VERSION}
+        --build-arg DISTRO=${DISTRO}
+        --build-arg VERSION=${VERSION}
+        --build-arg EE=${EE}
+        --build-arg NEXUS_USER=${NEXUS_USER}
+        --build-arg NEXUS_PASS=${NEXUS_PASS}
+        .
