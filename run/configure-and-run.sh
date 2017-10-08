@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash -e
 
 if [ -f bin/catalina.sh ]; then
     SERVER_CONFIG=/camunda/conf/server.xml
@@ -45,11 +45,11 @@ elif [ -f bin/standalone.sh ]; then
     POSTGRESQL_XA_CLASS=org.postgresql.xa.PGXADataSource
 
     function element_definied {
-        return $(test $(xmlstarlet sel $NAMESPACES -T -t -v "count($1)" $SERVER_CONFIG) -gt 0 )
+        test $(xmlstarlet sel $NAMESPACES -T -t -v "count($1)" $SERVER_CONFIG) -gt 0
     }
 
     function driver_defined {
-        return $(element_definied "//d:driver[@name='$1']")
+        element_definied "//d:driver[@name='$1']"
     }
 
     function add_driver {
@@ -68,45 +68,45 @@ elif [ -f bin/standalone.sh ]; then
     if [ -z "$SKIP_DB_CONFIG" ]; then
         # adding drivers if needed
         if ! driver_defined $H2_NAME; then
-            echo "Adding H2 driver to $SERVER_CONFIG"
+            echo "Adding $H2_NAME driver to $SERVER_CONFIG"
             add_driver $H2_NAME $H2_MODULE $H2_XA_CLASS
         else
-            echo "H2 driver already defined in $SERVER_CONFIG"
+            echo "$H2_NAME driver already defined in $SERVER_CONFIG"
         fi
 
         if ! driver_defined $H2_NAME_2; then
-            echo "Adding H2 driver to $SERVER_CONFIG"
+            echo "Adding $H2_NAME_2 driver to $SERVER_CONFIG"
             add_driver $H2_NAME_2 $H2_MODULE $H2_XA_CLASS
         else
-            echo "H2 driver already defined in $SERVER_CONFIG"
+            echo "$H2_NAME_2 driver already defined in $SERVER_CONFIG"
         fi
 
         if ! driver_defined $MYSQL_NAME; then
-            echo "Adding MySQL driver to $SERVER_CONFIG"
+            echo "Adding $MYSQL_NAME driver to $SERVER_CONFIG"
             add_driver $MYSQL_NAME $MYSQL_MODULE $MYSQL_XA_CLASS
         else
-            echo "MySQL driver already defined in $SERVER_CONFIG"
+            echo "$MYSQL_NAME driver already defined in $SERVER_CONFIG"
         fi
 
         if ! driver_defined $MYSQL_NAME_2; then
-            echo "Adding MySQL driver to $SERVER_CONFIG"
+            echo "Adding $MYSQL_NAME_2 driver to $SERVER_CONFIG"
             add_driver $MYSQL_NAME_2 $MYSQL_MODULE $MYSQL_XA_CLASS
         else
-            echo "MySQL driver already defined in $SERVER_CONFIG"
+            echo "$MYSQL_NAME_2 driver already defined in $SERVER_CONFIG"
         fi
 
         if ! driver_defined $POSTGRESQL_NAME; then
-            echo "Adding PostgreSQL driver to $SERVER_CONFIG"
+            echo "Adding $POSTGRESQL_NAME driver to $SERVER_CONFIG"
             add_driver $POSTGRESQL_NAME $POSTGRESQL_MODULE $POSTGRESQL_XA_CLASS
         else
-            echo "PostgreSQL driver already defined in $SERVER_CONFIG"
+            echo "$POSTGRESQL_NAME driver already defined in $SERVER_CONFIG"
         fi
 
         if ! driver_defined $POSTGRESQL_NAME_2; then
-            echo "Adding PostgreSQL driver to $SERVER_CONFIG"
+            echo "Adding $POSTGRESQL_NAME_2 driver to $SERVER_CONFIG"
             add_driver $POSTGRESQL_NAME_2 $POSTGRESQL_MODULE $POSTGRESQL_XA_CLASS
         else
-            echo "PostgreSQL driver already defined in $SERVER_CONFIG"
+            echo "$POSTGRESQL_NAME_2 driver already defined in $SERVER_CONFIG"
         fi
 
         # configure database
@@ -119,8 +119,7 @@ elif [ -f bin/standalone.sh ]; then
             ${SERVER_CONFIG}
     fi
 
-    export PREPEND_JAVA_OPTS="-Djboss.bind.address=0.0.0.0 -Djboss.bind.address.management=0.0.0.0 -Djava.net.preferIPv4Stack=true" \
-
+    export PREPEND_JAVA_OPTS="-Djboss.bind.address=0.0.0.0 -Djboss.bind.address.management=0.0.0.0 -Djava.net.preferIPv4Stack=true"
     export LAUNCH_JBOSS_IN_BACKGROUND=TRUE
 
     exec bin/standalone.sh

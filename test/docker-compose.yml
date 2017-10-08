@@ -26,7 +26,7 @@ services:
             - mysql:3306
             - "-s"
             - "--"
-            - /usr/local/bin/configure-and-run.sh
+            - /bin/configure-and-run.sh
 
     camunda-postgresql:
         image: menski/camunda-single-file:${DISTRO}-${VERSION}
@@ -47,7 +47,7 @@ services:
             - postgresql:5432
             - "-s"
             - "--"
-            - /usr/local/bin/configure-and-run.sh
+            - /bin/configure-and-run.sh
 
     mysql:
         image: mysql
