@@ -9,9 +9,11 @@ ARG NEXUS_PASS=_
 ARG EE=false
 ARG SLIM=false
 
-ADD build/download-camunda.sh /bin/
+RUN apk add --no-cache bash ca-certificates wget tar xmlstarlet rsync
 
-RUN apk add --no-cache bash ca-certificates wget tar
+COPY modules /tmp/modules/
+
+ADD build/* /bin/
 
 RUN download-camunda.sh
 
