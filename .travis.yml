@@ -15,33 +15,40 @@ jobs:
     include:
         - env: DISTRO=tomcat VERSION=7.6.0
           if: tag IS blank OR tag = 7.6.0
-        - env: DISTRO=tomcat VERSION=7.6.7 EE=true
-          if: tag IS blank OR tag = 7.6.7
-        - env: DISTRO=tomcat VERSION=7.7.0
-          if: tag IS blank OR tag = 7.7.0
-        - env: DISTRO=tomcat VERSION=7.7.4 EE=true
-          if: tag IS blank OR tag = 7.7.4
-        - env: DISTRO=tomcat VERSION=7.8.0-alpha4
-          if: tag IS blank OR tag = 7.8.0-alpha4
-        - env: DISTRO=tomcat VERSION=7.8.0-alpha4 EE=true
-          if: tag IS blank OR tag = 7.8.0-alpha4
-        - env: DISTRO=tomcat VERSION=7.8.0-SNAPSHOT
-          if: tag IS blank OR tag = 7.8.0-SNAPSHOT
-        - env: DISTRO=tomcat VERSION=7.8.0-SNAPSHOT EE=true
-          if: tag IS blank OR tag = 7.8.0-SNAPSHOT
         - env: DISTRO=wildfly VERSION=7.6.0
           if: tag IS blank OR tag = 7.6.0
+
+        - env: DISTRO=tomcat VERSION=7.6.7 EE=true
+          if: tag IS blank OR tag = 7.6.7
         - env: DISTRO=wildfly VERSION=7.6.7 EE=true
           if: tag IS blank OR tag = 7.6.7
+
+        - env: DISTRO=tomcat VERSION=7.7.0
+          if: tag IS blank OR tag = 7.7.0
         - env: DISTRO=wildfly VERSION=7.7.0
           if: tag IS blank OR tag = 7.7.0
+
+        - env: DISTRO=tomcat VERSION=7.7.4 EE=true
+          if: tag IS blank OR tag = 7.7.4
         - env: DISTRO=wildfly VERSION=7.7.4 EE=true
           if: tag IS blank OR tag = 7.7.4
+
+        - env: DISTRO=tomcat VERSION=7.8.0-alpha4
+          if: tag IS blank OR tag = 7.8.0-alpha4
         - env: DISTRO=wildfly VERSION=7.8.0-alpha4
+          if: tag IS blank OR tag = 7.8.0-alpha4
+
+        - env: DISTRO=tomcat VERSION=7.8.0-alpha4 EE=true
           if: tag IS blank OR tag = 7.8.0-alpha4
         - env: DISTRO=wildfly VERSION=7.8.0-alpha4 EE=true
           if: tag IS blank OR tag = 7.8.0-alpha4
-        - env: DISTRO=wildfly VERSION=7.8.0-SNAPSHOT
+
+        - env: DISTRO=tomcat VERSION=7.8.0-SNAPSHOT
           if: tag IS blank OR tag = 7.8.0-SNAPSHOT
         - env: DISTRO=wildfly VERSION=7.8.0-SNAPSHOT EE=true
+          if: tag IS blank OR tag = 7.8.0-SNAPSHOT
+
+        - env: DISTRO=tomcat VERSION=7.8.0-SNAPSHOT EE=true
+          if: tag IS blank OR tag = 7.8.0-SNAPSHOT
+        - env: DISTRO=wildfly VERSION=7.8.0-SNAPSHOT
           if: tag IS blank OR tag = 7.8.0-SNAPSHOT
