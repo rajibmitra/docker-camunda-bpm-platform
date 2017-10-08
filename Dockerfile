@@ -31,6 +31,8 @@ WORKDIR /camunda
 
 COPY --from=builder /camunda/ .
 
+RUN apk add --no-cache xmlstarlet
+
 ADD run/configure-and-run.sh /bin/
 
 CMD ["/bin/configure-and-run.sh"]

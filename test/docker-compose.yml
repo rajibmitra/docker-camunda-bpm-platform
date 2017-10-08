@@ -1,0 +1,68 @@
+version: '2.1'
+
+services:
+    camunda-h2:
+        image: menski/camunda-single-file:${DISTRO}-${VERSION}
+        environment:
+            - JAVA_OPTS=-Djava.security.egd=file:/dev/./urandom
+        ports:
+            - "8080:8080"
+        restart: always
+
+    camunda-mysql:
+        image: menski/camunda-single-file:${DISTRO}-${VERSION}
+        environment:
+            - JAVA_OPTS=-Djava.security.egd=file:/dev/./urandom
+            - DB_DRIVER=com.mysql.jdbc.Driver
+            - DB_URL=jdbc:mysql://mysql:3306/process-engine
+            - DB_USERNAME=camunda
+            - DB_PASSWORD=camunda
+        links:
+            - mysql
+        ports:
+            - "8080:8080"
+        volumes:
+            - $PWD/wait-for-it.sh:/bin/wait-for-it.sh
+        restart: always
+        command:
+            - /bin/wait-for-it.sh
+            - mysql:3306
+            - "-s"
+            - "--"
+            - /usr/local/bin/configure-and-run.sh
+
+    camunda-postgresql:
+        image: menski/camunda-single-file:${DISTRO}-${VERSION}
+        environment:
+            - JAVA_OPTS=-Djava.security.egd=file:/dev/./urandom
+            - DB_DRIVER=org.postgresql.Driver
+            - DB_URL=jdbc:postgresql://postgresql:5432/camunda
+            - DB_USERNAME=camunda
+            - DB_PASSWORD=camunda
+        links:
+            - postgresql
+        ports:
+            - "8080:8080"
+        volumes:
+            - $PWD/wait-for-it.sh:/bin/wait-for-it.sh
+        restart: always
+        command:
+            - /bin/wait-for-it.sh
+            - postgresql:5432
+            - "-s"
+            - "--"
+            - /usr/local/bin/configure-and-run.sh
+
+    mysql:
+        image: mysql
+        environment:
+            - MYSQL_ROOT_PASSWORD=camunda
+            - MYSQL_USER=camunda
+            - MYSQL_PASSWORD=camunda
+            - MYSQL_DATABASE=process-engine
+
+    postgresql:
+        image: postgres
+        environment:
+            - POSTGRES_USER=camunda
+            - POSTGRES_PASSWORD=camunda

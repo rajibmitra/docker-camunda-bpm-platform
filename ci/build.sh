@@ -9,3 +9,6 @@ docker build -t menski/camunda-single-file:${DISTRO}-${VERSION} \
     --build-arg NEXUS_USER=${NEXUS_USER} \
     --build-arg NEXUS_PASS=${NEXUS_PASS} \
     .
+
+cd test
+./test.sh
