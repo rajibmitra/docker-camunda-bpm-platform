@@ -24,6 +24,9 @@ function has_auth {
     [ "${NEXUS_USER}" != "_" -a "${NEXUS_PASS}" != "_" ]
 }
 
+ARTIFACT_VERSION="${VERSION}"
+POM_REPOSITORY="camunda-bpm"
+
 if is_ee; then
     REPOSITORY="camunda-bpm-ee"
     # Camunda enterprise artifact has additional ee part
@@ -32,12 +35,12 @@ if is_ee; then
     if ! is_snapshot; then
         # Camunda enterprise version as a -ee prefix if its not a SNAPSHOT
         ARTIFACT_VERSION="${VERSION}-ee"
+        POM_REPOSITORY="${REPOSITORY}"
     fi
 else
     REPOSITORY="camunda-bpm"
     ARTIFACT="camunda-bpm-${DISTRO}"
     ARTIFACT_GROUP="camunda-bpm-${DISTRO}"
-    ARTIFACT_VERSION="${VERSION}"
 fi
 
 if is_wildfly; then
@@ -47,6 +50,7 @@ fi
 
 if is_snapshot; then
     REPOSITORY="${REPOSITORY}-snapshots"
+    POM_REPOSITORY="${POM_REPOSITORY}-snapshots"
 fi
 
 
@@ -84,7 +88,7 @@ if is_slim; then
 fi
 
 # fetch database driver versions
-POM=$(wget -nv -O- "${NEXUS}?r=public&g=org.camunda.bpm&a=camunda-database-settings&v=${VERSION}&p=pom")
+POM=$(wget -nv -O- ${AUTH_PARAMS} "${NEXUS}?r=${POM_REPOSITORY}&g=org.camunda.bpm&a=camunda-database-settings&v=${ARTIFACT_VERSION}&p=pom")
 MYSQL_VERSION=$(echo $POM | xmlstarlet sel -t -v //_:version.mysql)
 POSTGRESQL_VERSION=$(echo $POM | xmlstarlet sel -t -v //_:version.postgresql)
 
