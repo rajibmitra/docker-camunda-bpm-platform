@@ -3,8 +3,6 @@ version: '2.1'
 services:
     camunda-h2:
         image: menski/camunda-single-file:${DISTRO}-${VERSION}
-        environment:
-            - JAVA_OPTS=-Djava.security.egd=file:/dev/./urandom
         ports:
             - "8080:8080"
         restart: always
@@ -12,7 +10,6 @@ services:
     camunda-mysql:
         image: menski/camunda-single-file:${DISTRO}-${VERSION}
         environment:
-            - JAVA_OPTS=-Djava.security.egd=file:/dev/./urandom
             - DB_DRIVER=com.mysql.jdbc.Driver
             - DB_URL=jdbc:mysql://mysql:3306/process-engine
             - DB_USERNAME=camunda
@@ -34,7 +31,6 @@ services:
     camunda-postgresql:
         image: menski/camunda-single-file:${DISTRO}-${VERSION}
         environment:
-            - JAVA_OPTS=-Djava.security.egd=file:/dev/./urandom
             - DB_DRIVER=org.postgresql.Driver
             - DB_URL=jdbc:postgresql://postgresql:5432/camunda
             - DB_USERNAME=camunda
