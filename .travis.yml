@@ -5,25 +5,6 @@ sudo: required
 services:
     - docker
 
-env:
-    matrix:
-        - DISTRO=tomcat VERSION=7.6.0
-        - DISTRO=tomcat VERSION=7.6.7 EE=true
-        - DISTRO=tomcat VERSION=7.7.0
-        - DISTRO=tomcat VERSION=7.7.4 EE=true
-        - DISTRO=tomcat VERSION=7.8.0-alpha4
-        - DISTRO=tomcat VERSION=7.8.0-alpha4 EE=true
-        - DISTRO=tomcat VERSION=7.8.0-SNAPSHOT
-        - DISTRO=tomcat VERSION=7.8.0-SNAPSHOT EE=true
-        - DISTRO=wildfly VERSION=7.6.0
-        - DISTRO=wildfly VERSION=7.6.7 EE=true
-        - DISTRO=wildfly VERSION=7.7.0
-        - DISTRO=wildfly VERSION=7.7.4 EE=true
-        - DISTRO=wildfly VERSION=7.8.0-alpha4
-        - DISTRO=wildfly VERSION=7.8.0-alpha4 EE=true
-        - DISTRO=wildfly VERSION=7.8.0-SNAPSHOT
-        - DISTRO=wildfly VERSION=7.8.0-SNAPSHOT EE=true
-
 before_install:
     - sudo apt-get update
     - sudo apt-get -y -o Dpkg::Options::="--force-confnew" install docker-ce
@@ -37,3 +18,38 @@ script:
         --build-arg NEXUS_USER=${NEXUS_USER}
         --build-arg NEXUS_PASS=${NEXUS_PASS}
         .
+
+jobs:
+    include:
+        - env: DISTRO=tomcat VERSION=7.6.0
+          if: tag IS blank OR tag = 7.6.0
+        - env: DISTRO=tomcat VERSION=7.6.7 EE=true
+          if: tag IS blank OR tag = 7.6.7
+        - env: DISTRO=tomcat VERSION=7.7.0
+          if: tag IS blank OR tag = 7.7.0
+        - env: DISTRO=tomcat VERSION=7.7.4 EE=true
+          if: tag IS blank OR tag = 7.7.4
+        - env: DISTRO=tomcat VERSION=7.8.0-alpha4
+          if: tag IS blank OR tag = 7.8.0-alpha4
+        - env: DISTRO=tomcat VERSION=7.8.0-alpha4 EE=true
+          if: tag IS blank OR tag = 7.8.0-alpha4
+        - env: DISTRO=tomcat VERSION=7.8.0-SNAPSHOT
+          if: tag IS blank OR tag = 7.8.0-SNAPSHOT
+        - env: DISTRO=tomcat VERSION=7.8.0-SNAPSHOT EE=true
+          if: tag IS blank OR tag = 7.8.0-SNAPSHOT
+        - env: DISTRO=wildfly VERSION=7.6.0
+          if: tag IS blank OR tag = 7.6.0
+        - env: DISTRO=wildfly VERSION=7.6.7 EE=true
+          if: tag IS blank OR tag = 7.6.7
+        - env: DISTRO=wildfly VERSION=7.7.0
+          if: tag IS blank OR tag = 7.7.0
+        - env: DISTRO=wildfly VERSION=7.7.4 EE=true
+          if: tag IS blank OR tag = 7.7.4
+        - env: DISTRO=wildfly VERSION=7.8.0-alpha4
+          if: tag IS blank OR tag = 7.8.0-alpha4
+        - env: DISTRO=wildfly VERSION=7.8.0-alpha4 EE=true
+          if: tag IS blank OR tag = 7.8.0-alpha4
+        - env: DISTRO=wildfly VERSION=7.8.0-SNAPSHOT
+          if: tag IS blank OR tag = 7.8.0-SNAPSHOT
+        - env: DISTRO=wildfly VERSION=7.8.0-SNAPSHOT EE=true
+          if: tag IS blank OR tag = 7.8.0-SNAPSHOT
