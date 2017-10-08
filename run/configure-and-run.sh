@@ -119,7 +119,8 @@ elif [ -f bin/standalone.sh ]; then
             ${SERVER_CONFIG}
     fi
 
-    export PREPEND_JAVA_OPTS="-Djboss.bind.address=0.0.0.0 -Djboss.bind.address.management=0.0.0.0"
+    export PREPEND_JAVA_OPTS="-Djboss.bind.address=0.0.0.0 -Djboss.bind.address.management=0.0.0.0 -Djava.net.preferIPv4Stack=true" \
+
     export LAUNCH_JBOSS_IN_BACKGROUND=TRUE
 
     exec bin/standalone.sh
