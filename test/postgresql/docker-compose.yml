@@ -1,5 +1,5 @@
 camunda:
-  image: camunda/camunda-bpm-platform:wildfly-7.8.0-alpha4
+  image: camunda/camunda-bpm-platform:wildfly-7.8.0-alpha5
   environment:
     - DB_DRIVER=postgresql
     - DB_URL=jdbc:postgresql://db:5432/camunda

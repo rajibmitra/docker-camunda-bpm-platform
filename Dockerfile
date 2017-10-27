@@ -1,6 +1,6 @@
 FROM ubuntu:latest
 
-ENV VERSION 7.8.0-alpha4
+ENV VERSION 7.8.0-alpha5
 ENV GROUP wildfly
 ENV DISTRO wildfly10
 ENV SERVER wildfly-10.1.0.Final

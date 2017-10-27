@@ -1,7 +1,7 @@
 # image settings for the docker image name, tags and
 # container name while running
 IMAGE_NAME=camunda/camunda-bpm-platform
-TAGS=wildfly-7.8.0-alpha4 wildfly-latest wildfly
+TAGS=wildfly-7.8.0-alpha5 wildfly-latest wildfly
 NAME=camunda
 
 # parent image name
