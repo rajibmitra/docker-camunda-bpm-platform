@@ -1,5 +1,5 @@
 camunda:
-  image: camunda/camunda-bpm-platform:wildfly-7.8.0
+  image: camunda/camunda-bpm-platform:wildfly-7.9.0-alpha1
   environment:
     - DB_DRIVER=mysql
     - DB_URL=jdbc:mysql://db:3306/process-engine
