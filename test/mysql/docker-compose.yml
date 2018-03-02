@@ -1,5 +1,5 @@
 camunda:
-  image: camunda/camunda-bpm-platform:jboss-7.9.0-alpha1
+  image: camunda/camunda-bpm-platform:jboss-7.9.0-alpha2
   environment:
     - DB_DRIVER=mysql
     - DB_URL=jdbc:mysql://db:3306/process-engine
