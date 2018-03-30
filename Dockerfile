@@ -1,6 +1,6 @@
 FROM ubuntu:latest
 
-ENV VERSION 7.9.0-alpha2
+ENV VERSION 7.9.0-alpha3
 ENV DISTRO jboss
 ENV SERVER jboss-as-7.2.0.Final
 ENV LIB_DIR /camunda/modules

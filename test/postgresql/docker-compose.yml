@@ -1,5 +1,5 @@
 camunda:
-  image: camunda/camunda-bpm-platform:jboss-7.9.0-alpha2
+  image: camunda/camunda-bpm-platform:jboss-7.9.0-alpha3
   environment:
     - DB_DRIVER=postgresql
     - DB_URL=jdbc:postgresql://db:5432/camunda
