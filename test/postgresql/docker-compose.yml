@@ -11,7 +11,7 @@ camunda:
     - "8080:8080"
 
 db:
-  image: postgres
+  image: postgres:9.6
   environment:
     - POSTGRES_USER=camunda
     - POSTGRES_PASSWORD=camunda
