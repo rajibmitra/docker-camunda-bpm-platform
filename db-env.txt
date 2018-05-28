@@ -1,0 +1,4 @@
+DB_DRIVER=com.mysql.jdbc.Driver
+DB_URL=jdbc:mysql://db:3306/process-engine
+DB_USERNAME=camunda
+DB_PASSWORD=camunda
